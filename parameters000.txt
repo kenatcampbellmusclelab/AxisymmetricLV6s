@@ -1,0 +1,158 @@
+// Domain discretization parameters. LV: Nmu, Nnu; other chambers: Nr
+Nmu = 10
+Nnu = 10
+Nr = 10
+
+// density
+rho = 1.05
+
+// Time steps
+dtMax = 0.001054
+dtRecord = 0.00527
+
+// Number of cycles
+Ncycles = 20
+Ncycles_show = 3
+
+// Time parameters (s)
+Tc = 1.054
+
+// Time parameters (s)
+Ta = 0.527
+Tca = 0.211
+Tca_shift = 0.15
+
+// Reference configuration parameters (LV)
+nu_up = 1.11
+// Basic geometric parameters
+a0 = 0
+muin0 = 0
+muout0 = 0
+//Alternative geometric parameters, used if RefVolLV > 0
+RefVolLV = 48.13
+WallVolLV = 89.52
+LAtoSA = 1.923
+// Muscle fiber parameterization angles
+psi_in_b0 = 1.48
+psi_out_b0 = -1.13
+// Muscle fiber sarcomere parameters (all chambers)
+Ls0 = 1.86
+Lsmax = 2.27
+Lsw = 0.3
+// LV active force generation, activation-dependent viscous resistance
+km = 201.3
+kav = 67.44
+// LV activation with sarcomere length
+kp = 0
+// LV, RV steepen activation onset (if kdfac < 1)
+kdfac = 0.75
+// LV passive stress parameters: viscous, elastic
+kv = 0.025
+c1 = 0.000006806
+bff = 39
+bfx = 4.2
+bxx = 12.8    
+
+// Right ventricle parameters
+rin0_rv = 0
+rout0_rv = 0
+// Alternative parameters, used if RefVolRV > 0
+RefVolRV = 117.75
+WallVolRV = 42.4
+km_rv = 170.2
+kav_rv = 57.73
+kv_rv = 0.025
+f_rv = 0.3
+c1_rv = 0.2923
+br_rv = 5
+bperp_rv = 15
+	
+// Left atrium parameters
+rin0_la = 0
+rout0_la = 0
+// Alternative parameters, used if RefVolLA > 0
+RefVolLA = 50.99
+WallVolLA = 15.7
+km_la = 27.22
+kav_la = 9.075
+kv_la = 0.025
+c1_la = 0.5950
+br_la = 10
+bperp_la = 30
+
+// Right atrium parameters
+rin0_ra = 0
+rout0_ra = 0
+// Alternative parameters, used if RefVolRA > 0
+RefVolRA = 19
+WallVolRA = 14.32
+km_ra = 12.84
+kav_ra = 4.279
+kv_ra = 0.025
+c1_ra = 0.0006436
+br_ra = 5
+bperp_ra = 15
+
+// Systemic resistance (kPa.s/cm3)
+Rsp =  0.1286
+Rsv = 0.001
+
+// Pulmonary resistance (kPa.s/cm3)
+Rpa = 0.001
+Rpp = 0.006267
+Rpv = 0.001986
+
+// Lumped circulation model compliances (cm3/kPa)
+Csa = 4.268
+Csv = 390
+Cpa = 75
+Cpv = 6.5
+
+// Valve parameters (Mynard dissertation) area VA in cm2, length VL in cm
+VA_aovo = 4
+VA_aovc = 0.001
+VL_aov = 1.5
+VA_mivo = 4
+VA_mivc = 0.001
+VL_miv = 6
+VA_puvo = 4
+VA_puvc = 0.001
+VL_puv = 1.5
+VA_tcvo = 4
+VA_tcvc = 0.001
+VL_tcv = 5
+
+//Valve rate constants,1/(kPa s) from Mynard in cm2/dyn/s
+Kaovo = 500
+Kaovc = 500
+Kmivo = 100
+Kmivc = 100
+Kpuvo = 500
+Kpuvc = 1000
+Ktcvo = 100
+Ktcvc = 100
+
+// Vein inertia parameters
+VA_pv = 5
+VL_pv = 10
+VA_sv = 16
+VL_sv = 5
+
+//aorta parameters: length cm, area at root cm2, exponential taper per cm, compliance (dyn/cm2)^-1, length of flow pulse (s)
+//distal impedance factor, matched = 1, Gaorta0, compliance at entrance; Gaorta1, increase of compliance with distance
+Laorta = 50
+A00 = 4
+A01 = 0.03
+Gaorta0 = 0.00001039
+Gaorta1 = -0.02
+tpulse = 0.02
+impedancefac = 1.01
+
+// External tissue pressure (kPa)
+Pext = 0.2136
+
+// Initial pressures (kPa) - determine fluid loading
+Psp0 = 10
+Psv0 = 0.5564
+Ppp0 = 2
+Ppv0 = 1
