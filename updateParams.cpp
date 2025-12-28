@@ -209,6 +209,7 @@ void updateParams(double* Param, int Nparam)
 		Param[14] = muin0;
 		Param[15] = muout0;
 	}
+
 	if (RefVolRV > 0.) {
 		rin0_rv = pow(RefVolRV * 0.75 / PI / f_rv, third);
 		rout0_rv = pow((RefVolRV + WallVolRV) * 0.75 / PI / f_rv, third);
@@ -227,4 +228,12 @@ void updateParams(double* Param, int Nparam)
 		Param[55] = rin0_ra;
 		Param[56] = rout0_ra;
 	}
+
+
+	// Checking
+	printf("muout0: %g\n", muout0);
+	printf("rin0_rv: %g\t\trout0_rv: %g\n", rin0_rv, rout0_rv);
+	printf("rin0_la: %g\t\trout0_la: %g\n", rin0_la, rout0_la);
+	printf("rin0_ra: %g\t\trout0_ra:  %g\n", rin0_ra, rout0_ra);
+
 }

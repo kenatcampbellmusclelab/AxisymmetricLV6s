@@ -3,6 +3,8 @@
 
 #include <math.h>
 #include "nrutil.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 double doubleIntegral(double** f, double dx, double dy, int Nx, int Ny);
 
@@ -40,6 +42,10 @@ void initialgeometry(int Nmu, int Nnu, int Nr) {
 		else psiStar_eq[k] = psi_eq[k];
 	}
 
+	// Testing
+	printf("mout0: %g\t\tmuin0: %g\n", muout0, muin0);
+	
+
 	for (k = 0; k < Nmu; k++) for (j = 0; j < Nnu; j++) {
 		omega[k][j] = 1 / (tan(psiStar_eq[k]) * tanh(mu0Vec[k]));
 		mu0[k][j] = mu0Vec[k];
@@ -64,7 +70,25 @@ void initialgeometry(int Nmu, int Nnu, int Nr) {
 		integratingFactor[k][j] = gmu0[k][j] * gnu0[k][j] * gphi0[k][j];
 	}
 	// Test of integration
-	//  Vwall_lv = 2. * PI * doubleIntegral(integratingFactor, dmu, dnu, Nmu, Nnu);
+	double Vwall_lv = 2. * PI * doubleIntegral(integratingFactor, dmu, dnu, Nmu, Nnu);
+
+	printf("dmu: %g\t\tdnu: %g\n", dmu, dnu);
+	printf("psiStar_eq:\t");
+	for (k = 0; k < Nmu; k++)
+		printf("%g\t", psiStar_eq[k]);
+	printf("\n");
+
+	printf("a0: %g\n", a0);
+	printf("denom: %g\n", denom);
+
+	for (k = 0; k < Nmu; k++)
+	{
+		for (j = 0; j < Nnu; j++)
+			printf("IntegratingFactor[%i][%i]: %g\n", k, j, integratingFactor[k][j]);
+	}
+
+	printf("Initial LV wall volume = %f cm3\n", Vwall_lv);
+	exit(1);
 	// Exact result
 	//  Vwall_lv = 2. / 3. * PI * DCUB(a0) *
 	//	((cos(nu_up) + 1.) * cosh(muout0) * DSQR(sinh(muout0)) + (cosh(muout0) - 1.) * cos(nu_up) * DSQR(sin(nu_up))

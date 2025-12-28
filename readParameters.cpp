@@ -367,7 +367,7 @@ void readParameters(int run)
 	char fname[80];
 	sprintf(fname, "parameters%03i.txt", run);
 
-	sprintf(fname, "c:/ken/github/campbellmusclelab/external/axisymmetricLV6s/parameters000.txt", run);
+	sprintf(fname, "d:/ken/github/campbellmusclelab/external/axisymmetricLV6s/parameters000.txt", run);
 	printf("fname: %s\n", fname);
 
 	string InputFile = fname;
@@ -381,6 +381,6 @@ void readParameters(int run)
 
 	for (int i = 1; i <= Nparam; i++)
 	{
-		printf("Param[%i]: %s: %g\n", i, ParamName[i], Param[i]);
+		printf("Param[%i]: %s: %g\n", i, string(ParamName[i]), Param[i]);
 	}
 }

@@ -512,3 +512,7 @@ Gemfile.lock
 **/demo_files/**/*.*
 
 
+# Tim's files
+**/output*.txt
+**/*.m
+**/*.ps
