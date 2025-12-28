@@ -366,12 +366,21 @@ void readParameters(int run)
 
 	char fname[80];
 	sprintf(fname, "parameters%03i.txt", run);
+
+	sprintf(fname, "c:/ken/github/campbellmusclelab/external/axisymmetricLV6s/parameters000.txt", run);
+	printf("fname: %s\n", fname);
+
 	string InputFile = fname;
 	ifstream paramFile(InputFile.c_str(), ios::in);
 
 	Skip = findString(paramFile, "Skip");		// Skip?
-	 
+
 	if (Skip != "on") for (i = 1; i <= Nparam; i++) Param[i] = findValue(paramFile, ParamName[i]);
 
 	paramFile.close();
+
+	for (int i = 1; i <= Nparam; i++)
+	{
+		printf("Param[%i]: %s: %g\n", i, ParamName[i], Param[i]);
+	}
 }

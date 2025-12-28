@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Axisymmetric.vcxproj" Id="12609bc4-0d64-4276-80c6-06806d2c3274" />
+</Solution>

@@ -153,7 +153,9 @@ int main(int argc, char* argv[]) {
 	FILE *ofp;
 
 	do {
-		sprintf(fname, "parameters%03i.txt", run);
+		//sprintf(fname, "parameters%03i.txt", run);
+		sprintf(fname, "c:/ken/github/campbellmusclelab/external/axisymmetricLV6s/parameters000.txt", run);
+		printf("fname: %s\n", fname);
 		//test whether file exists
 		ofp = fopen(fname, "r");
 		if (ofp) {
