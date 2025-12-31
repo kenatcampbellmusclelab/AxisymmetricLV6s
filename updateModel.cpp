@@ -148,9 +148,9 @@ int updateModel(double t) {
 		begin = end;
 	}
 	else {
-		/*Ken did this as a test
 		updateMapping();
 		updateDefGradTensor();
+		/*
 		updateCauchyTensor();
 		updateGreenStrain();
 		updateFiberStrain(t);
@@ -158,8 +158,9 @@ int updateModel(double t) {
 		computeElastic();
 		*/
 		updateActivation(t);
-		/*
 		computeActive();
+
+		/*
 		updateIntegrals(t);
 		*/
 
@@ -173,6 +174,11 @@ int updateModel(double t) {
 		// right atrium
 		sphericalChamber(a6, At_la, km_ra, kav_ra, kv_ra, Lsw, Ls0, Lsmax, br_ra, c1_ra, bperp_ra,
 			r0_ra, &eta_ra, &kappa_ra, &chi_ra, &Vra);
+
+		printf("\n\nLA vol: %g\n", Vla);
+		printf("RA vol: %g\n", Vra);
+		printf("RV vol: %g\n", Vrv);
+		exit(1);
 	}
 	int error = updateDerivs(t);
 	if (error) {

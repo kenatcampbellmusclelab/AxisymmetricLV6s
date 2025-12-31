@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "nrutil.h"
+#include <stdlib.h>
 
 void updateDefGradTensor() {
 	extern int Nmu, Nnu;
@@ -21,6 +22,8 @@ void updateDefGradTensor() {
 	double g, dg_da1, dg_da2;
 	double a = a0 + a1;
 	double gmu, gmu0, gphi, gphi0;		//note gnu = gmu
+
+	printf("ken was here\n");
 
 	for (k = 0; k < Nmu; k++) for (j = 0; j < Nnu; j++) {		//deformation gradient tensor
 		gmu0 = a0 * root_sum_sq0[k][j];
@@ -52,6 +55,30 @@ void updateDefGradTensor() {
 		dF33_da1[k][j] = (shmu[k][j] + a * chmu[k][j] * dmu_da1[k][j]) / gphi0;	//eq. (S34)
 		dF33_da2[k][j] = a * chmu[k][j] * dmu_da2[k][j] / gphi0;	//eq. (S34)
 	}
+
+	k = Nmu - 1;
+	j = Nnu - 1;
+	printf("F11: %g\n", F11[k][j]);
+	printf("dF11_da1: %g\n", dF11_da1[k][j]);
+	printf("dF11_da2: %g\n", dF11_da2[k][j]);
+
+	printf("F12: %g\n", F12[k][j]);
+	printf("dF12_da1: %g\n", dF12_da1[k][j]);
+	printf("dF12_da2: %g\n", dF12_da2[k][j]);
+
+	printf("F22: %g\n", F22[k][j]);
+	printf("dF22_da1: %g\n", dF22_da1[k][j]);
+	printf("dF22_da2: %g\n", dF22_da2[k][j]);
+
+	printf("F23: %g\n", F23[k][j]);
+	printf("dF23_da1: %g\n", dF23_da1[k][j]);
+	printf("dF23_da2: %g\n", dF23_da2[k][j]);
+
+	printf("F33: %g\n", F33[k][j]);
+	printf("dF33_da1: %g\n", dF33_da1[k][j]);
+	printf("dF33_da2: %g\n", dF33_da2[k][j]);
+
+	exit(1);
 }
 
 void updateCauchyTensor() {	//right Cauchy-Green tensor

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "nrutil.h"
+#include <stdlib.h>
 
 void rotate_fiber_to_prolate_ff(double **Aff, double **A22, double **A23, double **A33);
 void rotate_fiber_to_prolate(double **Afib11, double **Afib12, double **Afib13,
@@ -166,7 +167,14 @@ void computeActive() {
 	rotate_fiber_to_prolate_ff(Sf_ff_a1, Sf22_a1, Sf23_a1, Sf33_a1);
 	rotate_fiber_to_prolate_ff(Sf_ff_a2, Sf22_a2, Sf23_a2, Sf33_a2);
 	rotate_fiber_to_prolate_ff(Sf_ff_a3, Sf22_a3, Sf23_a3, Sf33_a3);
+
+	printf("Sf33_const[5][3]: %g\n", Sf33_const[5][3]);
+	exit(1);
+
 }
+
+
+
 
 //void totalStress(double da1_dt, double da2_dt, double da3_dt) {
 //	extern int Nmu, Nnu;

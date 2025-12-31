@@ -42,6 +42,7 @@ void updateMapping() {
 		Xmu = chmu[k][j];
 		LHS = Xmu * (DSQR(Xmu) * third + b) + S;
 		err = abs(LHS);
+
 		if (err > 0.01) {		//use exact solution
 			Sc = S;
 			root3 = pow(sqrt(4. * DCUB(b) + 9. * Sc * Sc) - 3. * Sc, third);
@@ -57,6 +58,7 @@ void updateMapping() {
 			} while (err > 1.e-10 && n < 100);
 			chmu[k][j] = Xmu;
 		}
+
 		if (chmu[k][j] < 1.) {		//Newton failed, use exact solution
 			Sc = S;
 			root3 = pow(sqrt(4. * DCUB(b) + 9. * Sc * Sc) - 3. * Sc, third);
@@ -66,7 +68,6 @@ void updateMapping() {
 			chmu[k][j] = 1.;	//just in case
 		shmu[k][j] = sqrt(DSQR(chmu[k][j]) - 1.);
 	}
-
 
 	for (k = 0; k < Nmu; k++) for (j = 0; j < Nnu; j++) {
 		sh_sq[k][j] = DSQR(shmu[k][j]);
@@ -82,14 +83,32 @@ void updateMapping() {
 		dmu_dnu[k][j] = ff2 / ff3;		//eq. (S13)
 		dmu_da1[k][j] = asqr * (1. - DCUB(chmu[k][j]) + (3. * chmu[k][j] - 3.) * cnu_sq[k][j]) / ff3;	//eq. (S24)
 		dmu_da2[k][j] = a0sqr * (1. - DCUB(chin0) + (3. * chin0 - 3.) * cnu_sq[k][j]) / (3. * ff3);	//eq. (S25)
+		
 		dff2_da1 = ffac * (3. * asqr * (1. - chmu[k][j]) - acube * shmu[k][j] * dmu_da1[k][j]);	//eq. (S26)
 		dff3_da1 = 3. * asqr * shmu[k][j] * sum_sq[k][j] + acube * chmu[k][j] * (3. * DSQR(shmu[k][j]) + DSQR(snu[k][j])) * dmu_da1[k][j];	//eq. (S27)
 		dff2_da2 = -ffac * (acube * shmu[k][j] * dmu_da2[k][j] + a0sqr * (chin0 - 1.));		//eq. (S28)
 		dff3_da2 = acube * chmu[k][j] * (3. * DSQR(shmu[k][j]) + DSQR(snu[k][j])) * dmu_da2[k][j];		//eq. (S29)
+
 		ddmu_dnuda1[k][j] = (dff2_da1 * ff3 - ff2 * dff3_da1) / DSQR(ff3);		//eq. (S30)
 		ddmu_dnuda2[k][j] = (dff2_da2 * ff3 - ff2 * dff3_da2) / DSQR(ff3);		//eq. (S30)
 		ddmu_dmu0da1[k][j] = -ff1 / DSQR(ff3) * dff3_da1;						//eq. (S30)
 		ddmu_dmu0da2[k][j] = -ff1 / DSQR(ff3) * dff3_da2;						//eq. (S30)
+
+		/*
+		printf("acube: %g\n", acube);
+		printf("shmu[k][j]: %g\n", shmu[k][j]);
+		printf("dmu_da2[k][j]: %g\n", dmu_da2[k][j]);
+
+		printf("dff2_da1: %g\n", dff2_da1);
+		printf("dff3_da1: %g\n", dff3_da1);
+		printf("dff2_da2: %g\n", dff2_da2);
+		printf("dff3_da2: %g\n", dff3_da2);
+
+		printf("ddmu_dnuda1: %g\n", ddmu_dnuda1[k][j]);
+		printf("ddmu_dnuda2: %g\n", ddmu_dnuda2[k][j]);
+		printf("ddmu_dmu0da1: %g\n", ddmu_dmu0da1[k][j]);
+		printf("ddmu_dmu0da2: %g\n", ddmu_dmu0da2[k][j]);
+		*/
 	}
 	double dnu = nuVec[1] - nuVec[0];
 	double c_in, coshmu, dcoshmu;
@@ -107,4 +126,6 @@ void updateMapping() {
 	for (j = 0; j < Nnu; j++)
 		vIntegrand_da2[j] = a0sqr * ((1. - DCUB(chin0)) / 3. + (chin0 - 1.) * cnu_sq[0][j]) * snu[0][j];	//Eq. (S71)
 	eta_a2 = 2. * PI * simpsons(vIntegrand_da2, dnu, Nnu);
+
+	printf("eta_a2: %g\n", eta_a2);
 }
