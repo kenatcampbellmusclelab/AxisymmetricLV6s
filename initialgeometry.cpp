@@ -87,8 +87,8 @@ void initialgeometry(int Nmu, int Nnu, int Nr) {
 			printf("IntegratingFactor[%i][%i]: %g\n", k, j, integratingFactor[k][j]);
 	}
 
-	printf("Initial LV wall volume = %f cm3\n", Vwall_lv);
-	exit(1);
+	printf("Initial LV wall volume = %f cm3\n\n", Vwall_lv);
+
 	// Exact result
 	//  Vwall_lv = 2. / 3. * PI * DCUB(a0) *
 	//	((cos(nu_up) + 1.) * cosh(muout0) * DSQR(sinh(muout0)) + (cosh(muout0) - 1.) * cos(nu_up) * DSQR(sin(nu_up))

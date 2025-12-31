@@ -148,6 +148,7 @@ int updateModel(double t) {
 		begin = end;
 	}
 	else {
+		/*Ken did this as a test
 		updateMapping();
 		updateDefGradTensor();
 		updateCauchyTensor();
@@ -155,9 +156,12 @@ int updateModel(double t) {
 		updateFiberStrain(t);
 		computeViscous();
 		computeElastic();
+		*/
 		updateActivation(t);
+		/*
 		computeActive();
 		updateIntegrals(t);
+		*/
 
 		// left atrium
 		sphericalChamber(a4, At_la, km_la, kav_la, kv_la, Lsw, Ls0, Lsmax, br_la, c1_la, bperp_la,

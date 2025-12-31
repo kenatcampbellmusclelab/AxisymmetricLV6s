@@ -63,7 +63,7 @@ int ODEsolver() {
 	Nmu2 = Nmu / 2 - 1;
 	Nnu2 = Nnu / 2 - 1;
 	Nnu_mid = int((PI / 2. - nu_up) / (PI - nu_up) * (Nnu - 1) + 0.5);		//find index on equator
-	   
+
 	for (iRecord = 0; iRecord < Nt; iRecord++) {
 		for (i = 0; i < Nstore; i++) store[i][iRecord] = 0.;
 		tvec[iRecord] = 0.;

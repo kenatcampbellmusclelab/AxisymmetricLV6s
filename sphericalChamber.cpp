@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "nrutil.h"
 
+#include <stdlib.h>
+
 double simpsons(double* f, double dx, int Npoints);
 
 void sphericalChamber(double aj, double Atj, double kmj, double kavj, double kvj, double Lswj,
@@ -27,6 +29,12 @@ void sphericalChamber(double aj, double Atj, double kmj, double kavj, double kvj
 		}
 		r[k] = pow(r03 - aj, 1./3.);
 		lambda = r[k] / r0j[k];
+
+		printf("aj: %g\n", aj);
+		printf("r0j[k]: %g\n", r0j[k]);
+		printf("r[k]: %g\n", r[k]);
+		printf("lambda: %g\n", lambda);
+
 		// Calculate green strain and derivatives
 		Err = 0.5 * (1. / DSQR(DSQR(lambda)) - 1.);
 		Eperp = 0.5 * (DSQR(lambda) - 1);
@@ -51,6 +59,14 @@ void sphericalChamber(double aj, double Atj, double kmj, double kavj, double kvj
 		// Calculate integrands
 		kappaj_integrand[k] = (Se_rr * dErr_daj + 2. * (Se_perp + Sf0_perp) * dEperp_daj) * DSQR(r0j[k]) * 4. * PI;
 		chij_integrand[k] = (Sv1j_rr * dErr_daj + 2. * (Sv1j_perp + Sf1j_perp) * dEperp_daj) * DSQR(r0j[k]) * 4. * PI;
+
+		/*
+		printf("dErr_daj: %g\n", dErr_daj);
+		printf("Sv1j_perp: %g\n", Sv1j_perp);
+		printf("Atj: %g\n", Atj);
+		printf("sigperp: %g\n", sigperp);
+		exit(1);
+		*/
 	}
 
 	double dr0 = r0j[1] - r0j[0];
@@ -59,4 +75,11 @@ void sphericalChamber(double aj, double Atj, double kmj, double kavj, double kvj
 	*chij = simpsons(chij_integrand, dr0, Nr);
 	*etaj = -4./3. * PI;
 	*vol = 4./3. * PI * (r03 - aj);
+
+	printf("kappa_j: %g\n", *kappaj);
+	printf("chij_j: %g\n", *chij);
+	printf("eta_j: %g\n", *etaj);
+	printf("vol: %g\n", *vol);
+	exit(1);
+
 }
