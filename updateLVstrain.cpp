@@ -23,8 +23,6 @@ void updateDefGradTensor() {
 	double a = a0 + a1;
 	double gmu, gmu0, gphi, gphi0;		//note gnu = gmu
 
-	printf("ken was here\n");
-
 	for (k = 0; k < Nmu; k++) for (j = 0; j < Nnu; j++) {		//deformation gradient tensor
 		gmu0 = a0 * root_sum_sq0[k][j];
 		gmu = a * root_sum_sq[k][j];
@@ -56,6 +54,7 @@ void updateDefGradTensor() {
 		dF33_da2[k][j] = a * chmu[k][j] * dmu_da2[k][j] / gphi0;	//eq. (S34)
 	}
 
+	/*
 	k = Nmu - 1;
 	j = Nnu - 1;
 	printf("F11: %g\n", F11[k][j]);
@@ -77,6 +76,7 @@ void updateDefGradTensor() {
 	printf("F33: %g\n", F33[k][j]);
 	printf("dF33_da1: %g\n", dF33_da1[k][j]);
 	printf("dF33_da2: %g\n", dF33_da2[k][j]);
+	*/
 }
 
 void updateCauchyTensor() {	//right Cauchy-Green tensor
@@ -105,6 +105,8 @@ void updateCauchyTensor() {	//right Cauchy-Green tensor
 		Cinv33[k][j] = byDetC * (C11[k][j] * C22[k][j] - DSQR(C12[k][j]));
 	}
 
+	/*
+
 	k = Nmu-1;
 	j = Nnu-1;
 
@@ -119,7 +121,7 @@ void updateCauchyTensor() {	//right Cauchy-Green tensor
 	printf("invC22: %g\n", Cinv22[k][j]);
 	printf("invC23: %g\n", Cinv23[k][j]);
 	printf("invC33: %g\n", Cinv33[k][j]);
-
+	*/
 }
 
 void updateGreenStrain() {	//Green-Lagrange strain tensor
@@ -169,6 +171,7 @@ void updateGreenStrain() {	//Green-Lagrange strain tensor
 		Eff[k][j] = sps_sq[k][j] * E22[k][j] + cps[k][j] * (cps[k][j] * E33[k][j] - 2 * sps[k][j] * E23[k][j]);
 	}
 
+	/*
 	k = Nmu - 1;
 	j = Nnu - 1;
 
@@ -197,6 +200,7 @@ void updateGreenStrain() {	//Green-Lagrange strain tensor
 	printf("Enn: %g\n", Enn[k][j]);
 	printf("Enf: %g\n", Enf[k][j]);
 	printf("Eff: %g\n", Eff[k][j]);
+	*/
 
 
 }
@@ -232,8 +236,13 @@ void updateFiberStrain(double t) {
 		dell_da3[k][j] = a * (a3 + omega[k][j]) * DSQR(snu_sq[k][j]) * sh_sq[k][j] / denom;
 	}
 	// Store end-diastolic strain at appropriate time 
+
 	double truncT = t - (int)(t / Tc) * Tc;
 	if (fabs(truncT - Tc + Ta) < dtMax) for (k = 0; k < Nmu; k++) for (j = 0; j < Nnu; j++) eps_fed[k][j] = eps_f[k][j];
+
+	/*
+	printf("after\n");
+	printf("eps_fed: %g\n", eps_fed[5][5]);
 
 	k = Nmu - 1;
 	j = Nnu - 1;
@@ -259,6 +268,8 @@ void updateFiberStrain(double t) {
 	printf("shmu: % g\n", shmu[k][j]);
 	printf("chmu: % g\n", chmu[k][j]);
 	printf("dmu_da1: % g\n", dmu_da1[k][j]);
+
+	*/
 
 
 }

@@ -127,5 +127,5 @@ void updateMapping() {
 		vIntegrand_da2[j] = a0sqr * ((1. - DCUB(chin0)) / 3. + (chin0 - 1.) * cnu_sq[0][j]) * snu[0][j];	//Eq. (S71)
 	eta_a2 = 2. * PI * simpsons(vIntegrand_da2, dnu, Nnu);
 
-	printf("eta_a2: %g\n", eta_a2);
+	//printf("eta_a2: %g\n", eta_a2);
 }

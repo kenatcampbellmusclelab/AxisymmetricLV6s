@@ -32,6 +32,19 @@ void computeElastic() {
 		Senf[k][j] = c1 * eW[k][j] * bfx * Enf[k][j];
 	}
 	rotate_fiber_to_prolate(Sess, Sesn, Sesf, Senn, Senf, Seff, Se11, Se12, Se13, Se22, Se23, Se33);
+
+	/*
+	k = Nmu - 1;
+	j = Nnu - 1;
+
+	printf("\n\nCompute elastic\n");
+	printf("Se11: %g\n", Se11[k][j]);
+	printf("Se12: %g\n", Se12[k][j]);
+	printf("Se13: %g\n", Se13[k][j]);
+	printf("Se22: %g\n", Se22[k][j]);
+	printf("Se23: %g\n", Se23[k][j]);
+	printf("Se33: %g\n", Se33[k][j]);
+	*/
 }
 
 void computeViscous() {
@@ -127,6 +140,37 @@ void computeViscous() {
 			+ cof22 * dE22_da2[k][j] + cof23 * dE23_da2[k][j] + cof33 * dE33_da2[k][j]);
 		Sv33_a3[k][j] = kvtwo * (cof22 * dE22_da3[k][j] + cof23 * dE23_da3[k][j]);
 	}
+
+	/*
+	k = Nmu - 1;
+	j = Nnu - 1;
+
+	printf("\n\nViscous\n");
+	printf("Sv11_a1: %g\n", Sv11_a1[k][j]);
+	printf("Sv11_a2: %g\n", Sv11_a2[k][j]);
+	printf("Sv11_a3: %g\n", Sv11_a3[k][j]);
+
+	printf("Sv12_a1: %g\n", Sv12_a1[k][j]);
+	printf("Sv12_a2: %g\n", Sv12_a2[k][j]);
+	printf("Sv12_a3: %g\n", Sv12_a3[k][j]);
+
+	printf("Sv13_a1: %g\n", Sv13_a1[k][j]);
+	printf("Sv13_a2: %g\n", Sv13_a2[k][j]);
+	printf("Sv13_a3: %g\n", Sv13_a3[k][j]);
+
+	printf("Sv22_a1: %g\n", Sv22_a1[k][j]);
+	printf("Sv22_a2: %g\n", Sv22_a2[k][j]);
+	printf("Sv22_a3: %g\n", Sv22_a3[k][j]);
+
+	printf("Sv23_a1: %g\n", Sv23_a1[k][j]);
+	printf("Sv23_a2: %g\n", Sv23_a2[k][j]);
+	printf("Sv23_a3: %g\n", Sv23_a3[k][j]);
+
+	printf("Sv33_a1: %g\n", Sv33_a1[k][j]);
+	printf("Sv33_a2: %g\n", Sv33_a2[k][j]);
+	printf("Sv33_a3: %g\n", Sv33_a3[k][j]);
+
+	*/
 }
 
 void computeActive() {
@@ -168,9 +212,35 @@ void computeActive() {
 	rotate_fiber_to_prolate_ff(Sf_ff_a2, Sf22_a2, Sf23_a2, Sf33_a2);
 	rotate_fiber_to_prolate_ff(Sf_ff_a3, Sf22_a3, Sf23_a3, Sf33_a3);
 
-	printf("Sf33_const[5][3]: %g\n", Sf33_const[5][3]);
-	exit(1);
+	/*
+	k = Nmu - 1;
+	j = Nnu - 1;
 
+
+	printf("\n\nActive\n");
+
+	printf("Sf22_const: %g\n", Sf22_const[k][j]); 
+	printf("Sf23_const: %g\n", Sf23_const[k][j]);
+	printf("Sf33_const: %g\n", Sf33_const[k][j]);
+
+
+	printf("Sf22_const: %g\n", Sf22_const[k][j]);
+	printf("Sf23_const: %g\n", Sf23_const[k][j]);
+	printf("Sf33_const: %g\n", Sf33_const[k][j]);
+
+	printf("Sf22_a1: %g\n", Sf22_a1[k][j]);
+	printf("Sf23_a1: %g\n", Sf23_a1[k][j]);
+	printf("Sf33_a1: %g\n", Sf33_a1[k][j]);
+
+	printf("Sf22_a2: %g\n", Sf22_a2[k][j]);
+	printf("Sf23_a2: %g\n", Sf23_a2[k][j]);
+	printf("Sf33_a2: %g\n", Sf33_a2[k][j]);
+
+	printf("Sf22_a3: %g\n", Sf22_a3[k][j]);
+	printf("Sf23_a3: %g\n", Sf23_a3[k][j]);
+	printf("Sf33_a3: %g\n", Sf33_a3[k][j]);
+
+	*/
 }
 
 
