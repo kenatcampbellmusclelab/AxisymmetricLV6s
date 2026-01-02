@@ -150,10 +150,11 @@ int updateModel(double t) {
 	else {
 		updateMapping();
 		updateDefGradTensor();
-		/*
 		updateCauchyTensor();
 		updateGreenStrain();
 		updateFiberStrain(t);
+
+		/*
 		computeViscous();
 		computeElastic();
 		*/
